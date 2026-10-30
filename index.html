@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A friendly, practical guide to the fundamentals of HTML.">
+    <title>HTML Learning Project | Master the Building Blocks of the Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        :root {
+            --bs-primary: #6254e7;
+            --bs-primary-rgb: 98, 84, 231;
+            --bs-link-color: #5143d8;
+            --bs-link-hover-color: #3829b8;
+            --bs-body-font-family: "DM Sans", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 5rem;
+        }
+
+        body {
+            min-width: 320px;
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.7;
+            background-image:
+                radial-gradient(ellipse at 8% 12%, rgba(13, 110, 253, 0.1), transparent 34rem),
+                radial-gradient(ellipse at 92% 38%, rgba(111, 66, 193, 0.09), transparent 32rem),
+                radial-gradient(ellipse at 12% 78%, rgba(13, 202, 240, 0.07), transparent 30rem);
+            background-attachment: fixed;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .navbar-brand {
+            font-family: "Space Grotesk", "DM Sans", sans-serif;
+            letter-spacing: -0.035em;
+        }
+
+        a,
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(13, 202, 240, 0.85);
+            outline-offset: 3px;
+        }
+
+        [data-bs-theme="dark"] body {
+            background-image:
+                radial-gradient(ellipse at 8% 12%, rgba(13, 110, 253, 0.2), transparent 34rem),
+                radial-gradient(ellipse at 92% 38%, rgba(111, 66, 193, 0.17), transparent 32rem),
+                radial-gradient(ellipse at 12% 78%, rgba(13, 202, 240, 0.12), transparent 30rem);
+        }
+
+        .navbar {
+            background-color: rgba(var(--bs-body-bg-rgb), 0.9) !important;
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(var(--bs-primary-rgb), 0.12);
+        }
+
+        .navbar-brand {
+            font-size: 1.25rem;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: color 160ms ease, background-color 160ms ease;
+        }
+
+        .btn {
+            font-weight: 600;
+            transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            --bs-btn-bg: #6254e7;
+            --bs-btn-border-color: #6254e7;
+            --bs-btn-hover-bg: #5042d0;
+            --bs-btn-hover-border-color: #5042d0;
+            --bs-btn-active-bg: #4437bb;
+            --bs-btn-active-border-color: #4437bb;
+            box-shadow: 0 0.35rem 0.85rem rgba(80, 66, 208, 0.2);
+        }
+
+        .legendary-hero {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background-color: #091327 !important;
+            background-image:
+                radial-gradient(ellipse at 12% 18%, rgba(13, 110, 253, 0.48), transparent 42%),
+                radial-gradient(ellipse at 88% 82%, rgba(111, 66, 193, 0.4), transparent 40%),
+                linear-gradient(130deg, #08152e 0%, #111a3d 55%, #071b31 100%) !important;
+        }
+
+        .legendary-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .legendary-hero .display-3 {
+            max-width: none;
+            font-size: clamp(2.15rem, 4vw, 3.65rem);
+            line-height: 1.04;
+            letter-spacing: -0.045em;
+        }
+
+        .hero-highlight {
+            color: #55e5ff !important;
+            background: linear-gradient(90deg, #65e7ff, #b6a4ff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: #ffb13b;
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .hero-kicker {
+            padding: 0.6rem 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            background: rgba(255, 255, 255, 0.08);
+            color: #a9eaff;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-proof {
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 0.9rem;
+        }
+
+        .hero-proof span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+        }
+
+        .hero-proof span::before {
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 50%;
+            background: #5de2bf;
+            content: "";
+            box-shadow: 0 0 0.75rem rgba(93, 226, 191, 0.7);
+        }
+
+        .legendary-hero::before {
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+            background-size: 48px 48px;
+            content: "";
+            mask-image: linear-gradient(to bottom, black, transparent 92%);
+            pointer-events: none;
+        }
+
+        .hero-visual::before {
+            position: absolute;
+            z-index: -1;
+            inset: 10% -4%;
+            border-radius: 2rem;
+            background: linear-gradient(135deg, #0dcaf0, #6f42c1, #0d6efd);
+            content: "";
+            filter: blur(42px);
+            opacity: 0.48;
+        }
+
+        .completion-banner {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            background-color: #091327;
+            background-image:
+                linear-gradient(105deg, rgba(7, 21, 46, 0.96), rgba(17, 26, 61, 0.88) 58%, rgba(13, 110, 253, 0.72)),
+                url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80");
+            background-position: center, center 58%;
+            background-size: cover;
+        }
+
+        .completion-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: linear-gradient(145deg, #ffc857, #f59e0b);
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.14);
+        }
+
+        .contact-card {
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.18) !important;
+        }
+
+        .contact-symbol {
+            width: 3rem;
+            height: 3rem;
+            flex: 0 0 3rem;
+            color: #fff;
+            background: linear-gradient(145deg, #0dcaf0, #0d6efd 55%, #6f42c1);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .contact-symbol:hover,
+        .contact-symbol:focus-visible {
+            color: #fff;
+            transform: scale(1.08);
+            box-shadow: 0 0.5rem 1rem rgba(13, 110, 253, 0.3);
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            object-position: center;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        main.container {
+            max-width: 1120px;
+        }
+
+        main > section.mb-5 > .d-flex.align-items-center.gap-3.mb-3 {
+            margin-bottom: 1.25rem !important;
+        }
+
+        main > section.mb-5 > .d-flex.align-items-center.gap-3.mb-3 > .badge {
+            display: inline-grid;
+            width: 2.65rem;
+            height: 2.65rem;
+            flex: 0 0 2.65rem;
+            place-items: center;
+            background: linear-gradient(145deg, #7569f2, #5143d8) !important;
+            box-shadow: 0 0.4rem 0.9rem rgba(80, 66, 208, 0.2);
+            font-family: "DM Sans", sans-serif;
+        }
+
+        main > section.mb-5 > .d-flex.align-items-center.gap-3.mb-3 h2 {
+            font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+            font-weight: 700;
+        }
+
+        main .card {
+            border-radius: 1.1rem;
+            border-color: rgba(var(--bs-primary-rgb), 0.1);
+        }
+
+        main > section.mb-5 > .card,
+        main > section.mb-5 > .row > [class*="col-"] > .card {
+            box-shadow: 0 0.65rem 2rem rgba(22, 34, 74, 0.055) !important;
+        }
+
+        pre {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+            line-height: 1.75;
+        }
+
+        .table {
+            --bs-table-hover-bg: rgba(var(--bs-primary-rgb), 0.055);
+        }
+
+        main > section:not([aria-label]) .card {
+            border-color: rgba(var(--bs-primary-rgb), 0.1) !important;
+        }
+
+        .photo-card {
+            overflow: hidden;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 1rem 2rem rgba(33, 37, 41, 0.14) !important;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            transition: transform 250ms ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.04);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                margin-top: 0.75rem;
+                padding: 0.75rem;
+                border: 1px solid var(--bs-border-color);
+                border-radius: 1rem;
+                background: rgba(var(--bs-body-bg-rgb), 0.98);
+                box-shadow: 0 1rem 2rem rgba(20, 33, 61, 0.12);
+            }
+
+            .navbar-nav {
+                gap: 0.2rem;
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.7rem 0.85rem;
+                border-radius: 0.65rem;
+                font-weight: 500;
+            }
+
+            .navbar-nav .nav-link:hover,
+            .navbar-nav .nav-link:focus-visible {
+                background: var(--bs-tertiary-bg);
+            }
+
+            .navbar-actions {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.65rem;
+                margin-top: 0.75rem;
+                padding-top: 0.75rem;
+                border-top: 1px solid var(--bs-border-color);
+            }
+
+            .navbar-actions .btn {
+                min-height: 44px;
+                margin: 0;
+            }
+
+            .legendary-hero .display-3 {
+                font-size: clamp(2rem, 8vw, 2.4rem);
+            }
+
+            .hero-photo {
+                height: 290px;
+            }
+
+            .hero-proof {
+                gap: 0.65rem !important;
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .btn,
+            .navbar-nav .nav-link,
+            .photo-card,
+            .photo-card img,
+            .contact-card,
+            .contact-symbol {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#top">🌐 HTML<span class="text-primary">Essentials</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavigation">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="#fundamentals">Fundamentals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#elements">Elements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#practice">Practice</a></li>
+                </ul>
+                <div class="navbar-actions ms-lg-3">
+                    <button class="btn btn-outline-secondary btn-sm rounded-pill px-3" id="themeToggle" type="button" aria-label="Switch to dark mode">🌙 Dark mode</button>
+                    <a class="btn btn-primary btn-sm rounded-pill px-3" href="#contact">Contact Us <span aria-hidden="true">↓</span></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="legendary-hero text-white" id="top">
+        <div class="container py-5">
+            <div class="row align-items-center g-5 py-lg-4">
+                <div class="col-lg-7">
+                    <h1 class="display-3 fw-bold"><span class="d-inline-block"><span aria-hidden="true">🌐</span> HTML Learning</span><br>Project</h1>
+                    <p class="hero-subtitle mt-3 mb-4">Master the Building Blocks of the Web</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a class="btn btn-primary btn-lg" href="#fundamentals">Start learning <span aria-hidden="true">→</span></a>
+                        <a class="btn btn-outline-light btn-lg" href="#practice">Jump to practice</a>
+                    </div>
+                    <div class="hero-proof d-flex flex-wrap gap-3 mt-4">
+                        <span>9 focused lessons</span>
+                        <span>Beginner friendly</span>
+                        <span>Learn by doing</span>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="hero-visual position-relative">
+                        <img class="hero-photo rounded-4 shadow-lg" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Laptop displaying code on a bright workspace" fetchpriority="high">
+                        <div class="position-absolute bottom-0 start-0 m-3 m-md-4 bg-body text-body rounded-3 shadow px-3 py-2">
+                            <span class="d-block fw-bold">Your next idea starts here</span>
+                            <span class="small text-body-secondary">One tag at a time ✨</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <section class="row g-3 mb-5" aria-label="What you will learn">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm"><div class="card-body d-flex gap-3 align-items-center">
+                    <span class="fs-2" aria-hidden="true">🧱</span><div><h2 class="h6 fw-bold mb-1">Page structure</h2><p class="small text-body-secondary mb-0">Give content meaning and order.</p></div>
+                </div></div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm"><div class="card-body d-flex gap-3 align-items-center">
+                    <span class="fs-2" aria-hidden="true">🏷️</span><div><h2 class="h6 fw-bold mb-1">Essential elements</h2><p class="small text-body-secondary mb-0">Use headings, links, lists, and more.</p></div>
+                </div></div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm"><div class="card-body d-flex gap-3 align-items-center">
+                    <span class="fs-2" aria-hidden="true">🚀</span><div><h2 class="h6 fw-bold mb-1">Hands-on practice</h2><p class="small text-body-secondary mb-0">Try a form and build your skills.</p></div>
+                </div></div>
+            </div>
+        </section>
+
+        <section class="mb-5" aria-labelledby="learning-spaces-title">
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-end gap-2 mb-3">
+                <div>
+                    <span class="small text-primary fw-bold text-uppercase">Learn by building</span>
+                    <h2 class="h3 fw-bold mb-0" id="learning-spaces-title">A little inspiration for your journey</h2>
+                </div>
+                <p class="text-body-secondary mb-0">Great websites begin with curiosity.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <article class="card photo-card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Learner working on a laptop at a desk" loading="lazy" decoding="async">
+                        <div class="card-body">
+                            <span class="badge text-bg-primary mb-2">START SIMPLE</span>
+                            <h3 class="h5 fw-bold">Make your first page</h3>
+                            <p class="text-body-secondary mb-0">A heading, a paragraph, and one small idea are all you need to begin.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="card photo-card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A team collaborating around computers" loading="lazy" decoding="async">
+                        <div class="card-body">
+                            <span class="badge text-bg-success mb-2">KEEP EXPLORING</span>
+                            <h3 class="h5 fw-bold">Build things together</h3>
+                            <p class="text-body-secondary mb-0">Try new elements, ask questions, and share what you create.</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-md-4">
+                    <article class="card photo-card border-0 shadow-sm h-100">
+                        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Close-up of colorful code displayed on a laptop" loading="lazy" decoding="async">
+                        <div class="card-body">
+                            <span class="badge text-bg-warning mb-2">PRACTICE OFTEN</span>
+                            <h3 class="h5 fw-bold">Turn practice into progress</h3>
+                            <p class="text-body-secondary mb-0">Small experiments today become confident projects tomorrow.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="fundamentals">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">01</span>
+                <h2 class="h3 fw-bold mb-0">HTML fundamentals</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+                    <p class="fs-5"><strong>HTML (HyperText Markup Language)</strong> is the standard markup language for creating web pages. Think of it as the structure that gives every website its content and meaning.</p>
+                    <div class="row g-4 mt-2">
+                        <div class="col-lg-6">
+                            <h3 class="h5 fw-bold">What does HTML mean?</h3>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0"><strong>HyperText</strong> — text that can connect to other pages.</li>
+                                <li class="list-group-item px-0"><strong>Markup</strong> — annotations that describe content and structure.</li>
+                                <li class="list-group-item px-0"><strong>Language</strong> — a set of rules for creating web content.</li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="h5 fw-bold">How tags work</h3>
+                            <p>Tags are keywords wrapped in angle brackets. Most come in pairs: an opening tag and a closing tag.</p>
+                            <pre class="bg-dark text-light rounded-3 p-3 mb-0"><code>&lt;h1&gt;A page heading&lt;/h1&gt;
+&lt;p&gt;A paragraph of text.&lt;/p&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="structure">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">02</span>
+                <h2 class="h3 fw-bold mb-0">A basic HTML document</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+                    <p>Every HTML page starts with a document type, metadata, and a body for visible content.</p>
+                    <pre class="bg-dark text-light rounded-3 p-3 p-md-4 mb-4 overflow-auto"><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+    &lt;title&gt;My first page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Welcome to my website&lt;/h1&gt;
+    &lt;p&gt;This is my first paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    <div class="row g-3">
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 rounded-3 bg-body-secondary h-100"><code>&lt;!doctype html&gt;</code><p class="small mb-0 mt-2">Declares an HTML document.</p></div></div>
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 rounded-3 bg-body-secondary h-100"><code>&lt;html&gt;</code><p class="small mb-0 mt-2">Wraps the whole page.</p></div></div>
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 rounded-3 bg-body-secondary h-100"><code>&lt;head&gt;</code><p class="small mb-0 mt-2">Holds page metadata.</p></div></div>
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 rounded-3 bg-body-secondary h-100"><code>&lt;body&gt;</code><p class="small mb-0 mt-2">Holds visible content.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="elements">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">03</span>
+                <h2 class="h3 fw-bold mb-0">Essential HTML elements</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle mb-0">
+                            <thead class="table-dark"><tr><th scope="col">Element</th><th scope="col">Purpose</th><th scope="col">Example</th></tr></thead>
+                            <tbody>
+                                <tr><th scope="row"><code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code></th><td>Headings, from most to least important</td><td><code>&lt;h1&gt;Main title&lt;/h1&gt;</code></td></tr>
+                                <tr><th scope="row"><code>&lt;p&gt;</code></th><td>A paragraph of text</td><td><code>&lt;p&gt;Hello!&lt;/p&gt;</code></td></tr>
+                                <tr><th scope="row"><code>&lt;a&gt;</code></th><td>A link to another page</td><td><code>&lt;a href="/about"&gt;About&lt;/a&gt;</code></td></tr>
+                                <tr><th scope="row"><code>&lt;img&gt;</code></th><td>An image (include descriptive alt text)</td><td><code>&lt;img src="photo.jpg" alt="..."&gt;</code></td></tr>
+                                <tr><th scope="row"><code>&lt;div&gt;</code></th><td>A generic grouping container</td><td><code>&lt;div&gt;Content&lt;/div&gt;</code></td></tr>
+                                <tr><th scope="row"><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code></th><td>Unordered and ordered lists</td><td><code>&lt;ul&gt;&lt;li&gt;Item&lt;/li&gt;&lt;/ul&gt;</code></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="examples">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">04</span>
+                <h2 class="h3 fw-bold mb-0">See the elements in action</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-lg-5">
+                    <h1 class="display-6 text-center">This is an H1 heading</h1>
+                    <h2 class="h3">This is an H2 heading</h2>
+                    <h3 class="h5">This is an H3 heading</h3>
+                    <p>A paragraph can have <strong>bold text</strong>, <em>italic text</em>, and a <a href="#practice">useful link</a>.</p>
+                    <div class="row g-4 mt-1">
+                        <div class="col-md-6"><h3 class="h6 fw-bold">An unordered list</h3><ul><li>First item</li><li>Second item</li><li>Third item</li></ul></div>
+                        <div class="col-md-6"><h3 class="h6 fw-bold">An ordered list</h3><ol><li>Step one</li><li>Step two</li><li>Step three</li></ol></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="forms">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">05</span>
+                <h2 class="h3 fw-bold mb-0">Forms and attributes</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h5 fw-bold">Try a sample form</h3>
+                            <p class="text-body-secondary">Forms collect information from your visitors.</p>
+                            <form id="sampleForm">
+                                <div class="mb-3"><label class="form-label" for="name">Name</label><input class="form-control" type="text" id="name" name="name" placeholder="Your name" required></div>
+                                <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control" type="email" id="email" name="email" placeholder="you@example.com" required></div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="subject">Topic</label>
+                                    <select class="form-select" id="subject" name="subject" required>
+                                        <option value="" selected disabled>Choose a topic...</option>
+                                        <option value="question">Question</option><option value="feedback">Feedback</option><option value="support">Support</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3"><label class="form-label" for="message">Message</label><textarea class="form-control" id="message" name="message" rows="3" placeholder="Write your message..." required></textarea></div>
+                                <button class="btn btn-primary" type="submit">Send message</button>
+                                <p class="small text-success mt-3 mb-0" id="formMessage" role="status" aria-live="polite"></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h3 class="h5 fw-bold">Useful attributes</h3>
+                            <p>Attributes add information to an element and are written inside its opening tag.</p>
+                            <pre class="bg-dark text-light rounded-3 p-3 overflow-auto"><code>&lt;img src="photo.jpg"
+     alt="A mountain at sunrise"
+     width="300"&gt;
+
+&lt;a href="https://example.com"
+   title="Visit Example"&gt;Visit&lt;/a&gt;</code></pre>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0"><code>id</code> — a unique identifier.</li>
+                                <li class="list-group-item px-0"><code>class</code> — a reusable grouping for styling.</li>
+                                <li class="list-group-item px-0"><code>src</code> and <code>href</code> — resource and link addresses.</li>
+                                <li class="list-group-item px-0"><code>alt</code> — a text alternative for an image.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="tables">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">06</span>
+                <h2 class="h3 fw-bold mb-0">Tables organize information</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead><tr><th scope="col">Student</th><th scope="col">Subject</th><th scope="col">Grade</th><th scope="col">Status</th></tr></thead>
+                            <tbody>
+                                <tr><th scope="row">Alice Johnson</th><td>Mathematics</td><td><span class="badge text-bg-success">A+</span></td><td>Passed</td></tr>
+                                <tr><th scope="row">Bob Smith</th><td>Physics</td><td><span class="badge text-bg-primary">B</span></td><td>Passed</td></tr>
+                                <tr><th scope="row">Carol Davis</th><td>Chemistry</td><td><span class="badge text-bg-success">A</span></td><td>Passed</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5" id="practice">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">07</span>
+                <h2 class="h3 fw-bold mb-0">Your practice path</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100"><div class="card-body p-4">
+                        <span class="badge text-bg-info mb-2">BEGINNER</span><h3 class="h5 fw-bold">Build the basics</h3>
+                        <ol class="mb-0"><li>Create a page with a title, heading, and paragraph.</li><li>Add an image with descriptive alt text.</li><li>Make a list of your favorite movies.</li><li>Build a table of your weekly schedule.</li></ol>
+                    </div></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-0 shadow-sm h-100"><div class="card-body p-4">
+                        <span class="badge text-bg-warning mb-2">NEXT LEVEL</span><h3 class="h5 fw-bold">Put it together</h3>
+                        <ol class="mb-0"><li>Create a contact form with different input types.</li><li>Build a navigation menu with working links.</li><li>Design a simple blog post layout.</li><li>Create a photo gallery grid.</li></ol>
+                    </div></div>
+                </div>
+            </div>
+            <a class="btn btn-primary mt-4" href="practice_exercises/index.html">Explore the practice exercises <span aria-hidden="true">→</span></a>
+        </section>
+
+        <section class="mb-5">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">08</span>
+                <h2 class="h3 fw-bold mb-0">Keep your project organized</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <pre class="bg-dark text-light rounded-3 p-3 mb-0 overflow-auto"><code>my-website/
+├── index.html
+├── about.html
+├── contact.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── script.js
+└── images/
+    └── logo.png</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge rounded-pill text-bg-primary">09</span>
+                <h2 class="h3 fw-bold mb-0">Where to go next</h2>
+            </div>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 bg-body-secondary rounded-3 h-100"><strong>CSS</strong><p class="small mb-0 mt-1">Style your pages.</p></div></div>
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 bg-body-secondary rounded-3 h-100"><strong>JavaScript</strong><p class="small mb-0 mt-1">Add interactivity.</p></div></div>
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 bg-body-secondary rounded-3 h-100"><strong>Responsive design</strong><p class="small mb-0 mt-1">Support every screen size.</p></div></div>
+                        <div class="col-sm-6 col-lg-3"><div class="p-3 bg-body-secondary rounded-3 h-100"><strong>Accessibility</strong><p class="small mb-0 mt-1">Make the web work for everyone.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="completion-banner rounded-4 p-4 p-lg-5 text-white shadow" id="contact" aria-labelledby="completion-title">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="completion-icon rounded-circle d-inline-flex align-items-center justify-content-center fs-3 flex-shrink-0" aria-hidden="true">🎉</span>
+                <h2 class="h3 fw-bold mb-0" id="completion-title">Congratulations!</h2>
+            </div>
+            <p class="mb-2">You’ve completed the HTML Learning Project! You now understand the fundamentals of HTML and can create your own web pages. Keep practicing and building projects to strengthen your skills.</p>
+            <p class="mb-0"><strong>Remember:</strong> The best way to learn HTML is by doing. Start building your own project!</p>
+            <div class="row g-3 mt-3">
+                <div class="col-md-7">
+                    <div class="card contact-card h-100 border-0 shadow">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <a class="contact-symbol rounded-circle d-inline-flex align-items-center justify-content-center text-decoration-none" href="mailto:dicky10224078@student.sttcipasung.ac.id" aria-label="Kirim email ke dicky10224078@student.sttcipasung.ac.id" title="Kirim email">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M.05 3.555A2 2 0 0 1 2 2.5h12a2 2 0 0 1 1.95 1.055L8 8.414.05 3.555ZM0 4.697v7.108l5.803-3.553L0 4.697Zm6.761 4.145L.432 12.72A2 2 0 0 0 2 13.5h12a2 2 0 0 0 1.568-.78L9.239 8.842 8 9.586l-1.239-.744ZM16 4.697l-5.803 3.555L16 11.805V4.697Z"/>
+                                </svg>
+                            </a>
+                            <span class="min-w-0">
+                                <span class="d-block small text-body-secondary text-uppercase">Email</span>
+                                <a class="fw-semibold text-body text-break text-decoration-none" href="mailto:dicky10224078@student.sttcipasung.ac.id">dicky10224078@student.sttcipasung.ac.id</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card contact-card h-100 border-0 shadow">
+                        <div class="card-body d-flex align-items-center gap-3">
+                            <a class="contact-symbol rounded-circle d-inline-flex align-items-center justify-content-center text-decoration-none" href="tel:+6287833591956" aria-label="Telepon 087833591956" title="Telepon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                    <path d="M3.654 1.328a.678.678 0 0 1 .737-.082l2.522 1.26c.283.142.442.45.391.763l-.409 2.455a.678.678 0 0 1-.607.563l-1.281.128a11.05 11.05 0 0 0 4.578 4.578l.128-1.281a.678.678 0 0 1 .563-.607l2.455-.409a.678.678 0 0 1 .763.391l1.26 2.522a.678.678 0 0 1-.082.737l-1.11 1.11c-.586.586-1.445.821-2.257.617A14.11 14.11 0 0 1 1.927 4.695c-.204-.812.031-1.671.617-2.257l1.11-1.11Z"/>
+                                </svg>
+                            </a>
+                            <span>
+                                <span class="d-block small text-body-secondary text-uppercase">Phone</span>
+                                <a class="fw-semibold text-body text-decoration-none" href="tel:+6287833591956">087833591956</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mt-4">
+        <div class="container py-4 d-flex flex-column flex-sm-row justify-content-between gap-2">
+            <span class="fw-semibold">🌐 HTML Essentials</span>
+            <span class="text-body-secondary small">Keep learning, keep building.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script>
+        const themeToggle = document.querySelector("#themeToggle");
+        const page = document.documentElement;
+
+        themeToggle.addEventListener("click", () => {
+            const isDark = page.getAttribute("data-bs-theme") === "dark";
+            page.setAttribute("data-bs-theme", isDark ? "light" : "dark");
+            themeToggle.textContent = isDark ? "🌙 Dark mode" : "☀️ Light mode";
+            themeToggle.setAttribute("aria-label", isDark ? "Switch to dark mode" : "Switch to light mode");
+        });
+
+        document.querySelector("#sampleForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+            const name = new FormData(event.currentTarget).get("name");
+            document.querySelector("#formMessage").textContent = `Thanks, ${name}! Your demo message is ready.`;
+            event.currentTarget.reset();
+        });
+    </script>
+</body>
+</html>
